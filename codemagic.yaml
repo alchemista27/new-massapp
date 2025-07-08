@@ -1,0 +1,13 @@
+workflows:
+  android-build:
+    name: Android Build
+    environment:
+      groups:
+        - keystore_credentials
+    scripts:
+      - name: Setup
+        script: flutter pub get
+      - name: Build APK
+        script: flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
