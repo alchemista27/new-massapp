@@ -5,7 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class AuthService {
   static final String _baseUrl = dotenv.env['API_URL']!;
 
-  static Future<String> login(String email, String password) async {
+  static Future<Map<String, dynamic>> login(String email, String password) async {
     final response = await http.post(
       Uri.parse('$_baseUrl/auth/login'),
       headers: {'Content-Type': 'application/json'},
@@ -13,7 +13,7 @@ class AuthService {
     );
 
     if (response.statusCode == 200) {
-      return json.decode(response.body)['token'];
+      return json.decode(response.body);
     } else {
       throw Exception('Failed to login');
     }
@@ -35,10 +35,5 @@ class AuthService {
     if (response.statusCode != 201) {
       throw Exception('Failed to register');
     }
-  }
-
-  static Future<String> getUserRole() async {
-    // Implementation to get user role from API or token
-    return 'student'; // Placeholder
   }
 }

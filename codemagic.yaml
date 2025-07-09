@@ -5,7 +5,7 @@ workflows:
       groups:
         - keystore_credentials
     scripts:
-      - name: Setup
+      - name: Install dependencies
         script: flutter pub get
       - name: Build APK
         script: flutter build apk --release
