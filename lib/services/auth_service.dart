@@ -7,7 +7,7 @@ class AuthService {
 
   static Future<Map<String, dynamic>> login(String email, String password) async {
     final response = await http.post(
-      Uri.parse('$_baseUrl/auth/login'),
+      Uri.parse('${dotenv.env['API_URL']}/api/auth/login'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({'email': email, 'password': password}),
     );
@@ -21,7 +21,7 @@ class AuthService {
 
   static Future<void> register(String fullName, String id, String email, String password, String role) async {
     final response = await http.post(
-      Uri.parse('$_baseUrl/auth/register'),
+      Uri.parse('${dotenv.env['API_URL']}/api/auth/register'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'fullName': fullName,
